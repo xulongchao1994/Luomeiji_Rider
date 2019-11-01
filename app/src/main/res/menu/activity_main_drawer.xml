@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_cehngke"
+            android:icon="@drawable/main_chengke_icon"
+            android:title="@string/menu_chengke" />
+        <item
+            android:id="@+id/nav_orderlist"
+            android:icon="@drawable/main_orderlist_icon"
+            android:title="@string/menu_orderlist" />
+        <item
+            android:id="@+id/nav_moeny"
+            android:icon="@drawable/main_moeny_icon"
+            android:title="@string/menu_moeny" />
+        <item
+            android:id="@+id/nav_kefu"
+            android:icon="@drawable/main_kefu_icon"
+            android:title="@string/menu_kefu" />
+        <item
+            android:id="@+id/nav_outlogin"
+            android:icon="@drawable/main_outlogin"
+            android:title="@string/menu_outlogin" />
+    </group>
+
+
+</menu>
