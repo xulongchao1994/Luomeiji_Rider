@@ -1,7 +1,141 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="220dp"
+    android:background="@drawable/main_order_item_bg"
+    android:orientation="vertical"
+    android:paddingLeft="20dp"
+    android:paddingTop="10dp"
+    android:paddingRight="20dp"
+    android:paddingBottom="10dp">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="￥5.6"
+            android:textColor="#ff303a42"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/order_item_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="尽快送达"
+            android:textColor="#ff303a42"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/img_h_view_bg" />
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <ImageView
+            android:id="@+id/order_item_qu_icon"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/qu" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@id/order_item_qu_juli"
+            android:layout_toRightOf="@id/order_item_qu_icon"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="米知味（展览路店）"
+                android:textColor="#ff1c1d1d"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="展览路与金城寨街交叉口"
+                android:textColor="#ff808080"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/order_item_qu_juli"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="2.3km"
+            android:textColor="#ff303a42"
+            android:textSize="12sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <ImageView
+            android:id="@+id/order_item_shou_icon"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/shou" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@id/order_item_shou_juli"
+            android:layout_toRightOf="@id/order_item_shou_icon"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="文体路18号（	网吧对面）"
+                android:textColor="#ff1c1d1d"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="展览路与金城寨街交叉口"
+                android:textColor="#ff808080"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/order_item_shou_juli"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="2.3km"
+            android:textColor="#ff303a42"
+            android:textSize="12sp" />
+    </RelativeLayout>
+
+    <Button
+        android:layout_width="180dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/qiangdan" />
 </LinearLayout>
