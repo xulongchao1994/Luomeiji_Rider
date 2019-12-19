@@ -16,4 +16,10 @@
 
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
+
+    <string name="bindbank_name">请输入持卡人姓名</string>
+    <string name="bindbank_idnumber">请输入持卡人身份证号</string>
+    <string name="bindbank_banknumber">请输入银行卡号码</string>
+    <string name="bindbank_bankname">请输入开户行</string>
+
 </resources>

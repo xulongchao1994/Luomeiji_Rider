@@ -4,6 +4,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.luomeiji_rider.R
 import com.android.luomeiji_rider.base.LBaseAppCompatActivity
+import com.android.luomeiji_rider.tools.LActivityTool
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import kotlinx.android.synthetic.main.activity_getmoeny.*
@@ -15,6 +16,7 @@ class GetMoenyActivity : LBaseAppCompatActivity<GetMoenyPersenter>(), IGetMoenyV
 
     var orderlistdata = arrayListOf<String>()
     override fun initView() {
+        LActivityTool.addActivity(this)
         getmoeny_back.setOnClickListener { finish() }
         var linearlayotumanager = LinearLayoutManager(this)
         linearlayotumanager.orientation = RecyclerView.VERTICAL

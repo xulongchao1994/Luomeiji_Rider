@@ -1,4 +1,4 @@
-package com.android.luomeiji_rider.UI.password
+package com.android.luomeiji_rider.ui.password
 
 import android.content.Context
 import android.content.Intent
@@ -7,6 +7,7 @@ import com.android.luomeiji_rider.R
 import com.android.luomeiji_rider.base.LBaseAppCompatActivity
 import com.android.luomeiji_rider.bean.SignUpBean
 import com.android.luomeiji_rider.data.UserData_Java
+import com.android.luomeiji_rider.tools.LActivityTool
 import com.android.luomeiji_rider.ui.main.MainActivity
 import com.vondear.rxtool.RxKeyboardTool
 import com.vondear.rxtool.view.RxToast
@@ -17,18 +18,12 @@ class SetPswActivity : LBaseAppCompatActivity<SetPswPersenter>(), ISetPswView {
         RxKeyboardTool.hideKeyboard(this, settingpsw_onepsw)
         RxKeyboardTool.hideKeyboard(this, settingpsw_twopsw)
         editor!!.putBoolean("islogin", true)
-        editor!!.putString("username", signUpBean.data.phoneNum)
+        editor!!.putString("username", phonenumber)
         editor!!.putString("password", settingpsw_twopsw.text.toString())
-        editor!!.putString("userId", signUpBean.data.userId)
-        editor!!.putString("phoneNum", signUpBean.data.phoneNum)
-        editor!!.putString("avatar", signUpBean.data.avatar)
-        editor!!.putString("nickName", signUpBean.data.nickName)
+        editor!!.putString("userId", signUpBean.data.rider_id)
         editor!!.commit()
         UserData_Java.islogin = true
-        UserData_Java.userid = signUpBean.data.userId
-        UserData_Java.phoneNum = signUpBean.data.phoneNum
-        UserData_Java.avatar = signUpBean.data.avatar
-        UserData_Java.nickName = signUpBean.data.nickName
+        UserData_Java.userid = signUpBean.data.rider_id
         startActivity(Intent(this, MainActivity::class.java))
         finish()
     }
@@ -48,6 +43,7 @@ class SetPswActivity : LBaseAppCompatActivity<SetPswPersenter>(), ISetPswView {
     var sp: SharedPreferences? = null
     var type = ""
     override fun initView() {
+        LActivityTool.addActivity(this)
         sp = getSharedPreferences("USERINFO", Context.MODE_PRIVATE)
         editor = sp!!.edit()
         phonenumber = intent.getStringExtra("phonenumber")
@@ -55,6 +51,7 @@ class SetPswActivity : LBaseAppCompatActivity<SetPswPersenter>(), ISetPswView {
         settingpsw_ok_bt.setOnClickListener {
             psworpsw()
         }
+
 //        settingpsw_twopsw.addTextChangedListener(object : TextWatcher {
 //            override fun afterTextChanged(p0: Editable?) {
 //                if (settingpsw_twopsw.text.toString() != settingpsw_onepsw.text.toString()) {
@@ -88,14 +85,14 @@ class SetPswActivity : LBaseAppCompatActivity<SetPswPersenter>(), ISetPswView {
             RxToast.normal("两次密码不一致")
             return
         }
-        when (type) {
-            "1" -> {
-                mPersenter!!.singuppsw(phonenumber, settingpsw_onepsw.text.toString(), settingpsw_twopsw.text.toString(), phonecode)
-            }
-            "2" -> {
-                mPersenter!!.findpsw(phonenumber, settingpsw_onepsw.text.toString(), phonecode)
-            }
-        }
+//        when (type) {
+//            "1" -> {
+                mPersenter!!.singuppsw(phonenumber, phonecode, settingpsw_twopsw.text.toString())
+//            }
+//            "2" -> {
+//                mPersenter!!.findpsw(phonenumber, settingpsw_onepsw.text.toString(), phonecode)
+//            }
+//        }
     }
 
     override fun initPersenter() {

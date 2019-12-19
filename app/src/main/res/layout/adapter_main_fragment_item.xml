@@ -16,6 +16,7 @@
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/order_orderprice"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -60,16 +61,16 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/order_getordername"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="米知味（展览路店）"
                 android:textColor="#ff1c1d1d"
                 android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/order_getorderaddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="展览路与金城寨街交叉口"
                 android:textColor="#ff808080"
                 android:textSize="12sp" />
         </LinearLayout>
@@ -107,16 +108,16 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/order_postordername"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="文体路18号（	网吧对面）"
                 android:textColor="#ff1c1d1d"
                 android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/order_postorderaddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="展览路与金城寨街交叉口"
                 android:textColor="#ff808080"
                 android:textSize="12sp" />
         </LinearLayout>

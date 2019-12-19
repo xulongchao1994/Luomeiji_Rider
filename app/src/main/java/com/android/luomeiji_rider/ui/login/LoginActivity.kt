@@ -3,12 +3,14 @@ package com.android.luomeiji_rider.ui.login
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import com.android.luomeiji_driver.UI.signup.SignupActivity
 import com.android.luomeiji_rider.R
 import com.android.luomeiji_rider.base.LBaseAppCompatActivity
 import com.android.luomeiji_rider.bean.LoginBean
 import com.android.luomeiji_rider.data.UserData_Java
+import com.android.luomeiji_rider.tools.LActivityTool
+import com.android.luomeiji_rider.ui.legalize.CarLegalizeActivity
 import com.android.luomeiji_rider.ui.main.MainActivity
+import com.android.luomeiji_rider.ui.signup.SignupActivity
 import com.vondear.rxtool.RxKeyboardTool
 import com.vondear.rxtool.view.RxToast
 import kotlinx.android.synthetic.main.activity_login.*
@@ -20,21 +22,23 @@ class LoginActivity : LBaseAppCompatActivity<LoginPersenter>(), ILoginView {
         editor!!.putBoolean("islogin", true)
         editor!!.putString("username", login_name_et.text.toString())
         editor!!.putString("password", login_psw_et.text.toString())
-        editor!!.putString("userId", string.data.userId)
-        editor!!.putString("phoneNum", string.data.phoneNum)
-        editor!!.putString("avatar", string.data.avatar)
-        editor!!.putString("nickName", string.data.nickName)
+        editor!!.putString("userId", string.data.rider_id)
+        editor!!.putString("certification", string.data.certification)
         editor!!.commit()
         UserData_Java.islogin = true
-        UserData_Java.userid = string.data.userId
-        UserData_Java.phoneNum = string.data.phoneNum
-        UserData_Java.avatar = string.data.avatar
-        UserData_Java.nickName = string.data.nickName
-        startActivity(Intent(this, MainActivity::class.java))
+        UserData_Java.userid = string.data.rider_id
+        UserData_Java.islegalize = string.data.certification
+        if (UserData_Java.islegalize != "1") {
+
+            startActivity(Intent(this, CarLegalizeActivity::class.java))
+        } else {
+            startActivity(Intent(this, MainActivity::class.java))
+        }
         finish()
     }
 
     override fun loginerror(string: String) {
+        RxToast.showToast(string)
     }
 
     override fun initlayout(): Int {
@@ -45,13 +49,14 @@ class LoginActivity : LBaseAppCompatActivity<LoginPersenter>(), ILoginView {
     var sp: SharedPreferences? = null
     override fun initView() {
 
+        LActivityTool.addActivity(this)
         sp = getSharedPreferences("USERINFO", Context.MODE_PRIVATE)
         editor = sp!!.edit()
         login_singin.setOnClickListener {
-            startActivity(Intent(this, SignupActivity::class.java).putExtra("type", 1))
+            startActivity(Intent(this, SignupActivity::class.java).putExtra("type", "1"))
         }
         login_forgetpsw.setOnClickListener {
-            startActivity(Intent(this, SignupActivity::class.java).putExtra("type", 2))
+            startActivity(Intent(this, SignupActivity::class.java).putExtra("type", "2"))
         }
         login_login_bt.setOnClickListener {
             var name = login_name_et.text.toString()

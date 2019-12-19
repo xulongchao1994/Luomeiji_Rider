@@ -2,14 +2,15 @@ package com.android.luomeiji_rider.bean;
 
 public class SignUpBean {
 
+
     /**
      * code : 1
-     * msg : 请求成功
-     * data : {"driverUserId":"1"}
+     * message : 请求成功
+     * data : {"rider_id":"32"}
      */
 
     private String code;
-    private String msg;
+    private String message;
     private DataBean data;
 
     public String getCode() {
@@ -20,12 +21,12 @@ public class SignUpBean {
         this.code = code;
     }
 
-    public String getMsg() {
-        return msg;
+    public String getMessage() {
+        return message;
     }
 
-    public void setMsg(String msg) {
-        this.msg = msg;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public DataBean getData() {
@@ -37,53 +38,18 @@ public class SignUpBean {
     }
 
     public static class DataBean {
+        /**
+         * rider_id : 32
+         */
 
-        private String userId;
-        private String nickName;
-        private String avatar;
-        private String phoneNum;
+        private String rider_id;
 
-        public String getUserId() {
-            return userId;
+        public String getRider_id() {
+            return rider_id;
         }
 
-        public void setUserId(String userId) {
-            this.userId = userId;
-        }
-
-        public String getNickName() {
-            return nickName;
-        }
-
-        public void setNickName(String nickName) {
-            this.nickName = nickName;
-        }
-
-        public String getAvatar() {
-            return avatar;
-        }
-
-        public void setAvatar(String avatar) {
-            this.avatar = avatar;
-        }
-
-        public String getPhoneNum() {
-            return phoneNum;
-        }
-
-        public void setPhoneNum(String phoneNum) {
-            this.phoneNum = phoneNum;
-        }
-
-        @Override
-        public String toString() {
-            return "DataBean{" +
-                    "userId='" + userId + '\'' +
-                    ", nickName='" + nickName + '\'' +
-                    ", avatar='" + avatar + '\'' +
-                    ", phoneNum='" + phoneNum + '\'' +
-                    '}';
+        public void setRider_id(String rider_id) {
+            this.rider_id = rider_id;
         }
     }
-
 }

@@ -13,27 +13,94 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ui.main.MainActivity">
+        <!--欢迎页-->
+        <activity
+            android:name=".ui.welcome.WelcomeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/start_app">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ui.main.MainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/start_activity">
+
+        </activity>
         <!--订单记录-->
-        <activity android:name=".ui.orderlist.OrderListActivity"></activity>
+        <activity
+            android:name=".ui.orderlist.OrderListActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/start_activity"></activity>
         <!--收支明细-->
-        <activity android:name=".ui.getmoeny.GetMoenyActivity"></activity>
+        <activity
+            android:name=".ui.getmoeny.GetMoenyActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/start_activity"></activity>
         <!--用户评价-->
-        <activity android:name=".ui.usercomment.UserCommentActivity"></activity>
+        <activity
+            android:name=".ui.usercomment.UserCommentActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/start_activity"></activity>
         <!--我的钱包-->
-        <activity android:name=".ui.mywallet.MyWalletActivity"></activity>
+        <activity
+            android:name=".ui.mywallet.MyWalletActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/start_activity"></activity>
         <!--登陆-->
-        <activity android:name=".ui.login.LoginActivity"></activity>
+        <activity
+            android:name=".ui.login.LoginActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/start_activity"></activity>
         <!--注册-->
-        <activity android:name=".ui.signup.SignupActivity"></activity>
-        <!--修改密码-->
-        <activity android:name=".UI.password.SetPswActivity"></activity>
+        <activity
+            android:name=".ui.signup.SignupActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/start_activity"></activity>
+        <!--绑定银行卡-->
+        <activity
+            android:name=".ui.bindbank.BindBankActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/start_activity"></activity>
+        <!--未绑定银行卡-->
+        <activity
+            android:name=".ui.bindbank.DontBindBankActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/start_activity"></activity>
+        <!--提现-->
+        <activity
+            android:name=".ui.withdraw.WithdrawActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/start_activity"></activity>
+        <!--设置密码-->
+        <activity
+            android:name=".ui.password.SetPswActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/start_activity"></activity>
+        <!--个人信息认证-->
+        <activity
+            android:name=".ui.legalize.CarLegalizeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/start_activity"></activity>
+        <!--认证失败-->
+        <activity
+            android:name=".ui.legalizeresult.LegalizeresulterrorActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/start_activity"></activity>
+        <!--认证成功-->
+        <activity
+            android:name=".ui.legalizeresult.LegalizeresultsuccessActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/start_activity"></activity>
+        <!--等待审核-->
+        <activity
+            android:name=".ui.legalizeresult.LegalizeresultwithActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/start_activity"></activity>
+        <!--相册剪裁-->
+        <activity android:name="com.yalantis.ucrop.UCropActivity"></activity>
     </application>
 
 </manifest>

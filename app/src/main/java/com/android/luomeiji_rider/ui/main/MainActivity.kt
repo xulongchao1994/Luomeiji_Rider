@@ -1,25 +1,23 @@
 package com.android.luomeiji_rider.ui.main
 
+
+import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
-
-
 import android.view.View
-import androidx.appcompat.app.ActionBarDrawerToggle
-
-import com.android.luomeiji_rider.R
-import com.android.luomeiji_rider.tools.RUtils
-import com.google.android.material.navigation.NavigationView
-
-import androidx.drawerlayout.widget.DrawerLayout
-
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
-
 import android.widget.Toast
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import com.android.luomeiji_rider.R
 import com.android.luomeiji_rider.adapter.Viewpage_Adapter
 import com.android.luomeiji_rider.base.LBaseAppCompatActivity
+import com.android.luomeiji_rider.data.UserData_Java
+import com.android.luomeiji_rider.tools.LActivityTool
+import com.android.luomeiji_rider.tools.RUtils
+import com.android.luomeiji_rider.ui.login.LoginActivity
 import com.android.luomeiji_rider.ui.main_framgent.Main_fragment
 import com.android.luomeiji_rider.ui.mywallet.MyWalletActivity
 import com.android.luomeiji_rider.ui.orderlist.OrderListActivity
@@ -33,7 +31,9 @@ class MainActivity : LBaseAppCompatActivity<MainPersenter>(), IMainView {
         return R.layout.activity_main
     }
 
+    var sp: SharedPreferences? = null
     override fun initView() {
+        sp = getSharedPreferences("USERINFO", Context.MODE_PRIVATE)
         setSupportActionBar(toolbar)
         mDrawertoggle = ActionBarDrawerToggle(
                 this@MainActivity,
@@ -43,6 +43,7 @@ class MainActivity : LBaseAppCompatActivity<MainPersenter>(), IMainView {
                 R.string.drawer_close
         )
 
+        LActivityTool.addActivity(this)
         nav_view.getHeaderView(0).findViewById<View>(R.id.imageView).setOnClickListener { view ->
             Toast.makeText(this@MainActivity, view.id.toString(), Toast.LENGTH_SHORT).show()
             drawer_layout.closeDrawer(nav_view)
@@ -58,6 +59,9 @@ class MainActivity : LBaseAppCompatActivity<MainPersenter>(), IMainView {
                 R.id.nav_moeny -> {
                     startActivity(Intent(this, MyWalletActivity::class.java))
                 }
+                R.id.nav_outlogin -> {
+                    outlogin()
+                }
             }
             drawer_layout.closeDrawer(nav_view)
             false
@@ -69,6 +73,31 @@ class MainActivity : LBaseAppCompatActivity<MainPersenter>(), IMainView {
         val home_me_2 = RUtils.zoomDrawable(home_me, 220, 220)
         toolbar.navigationIcon = home_me_2
         intview()
+    }
+
+    private fun outlogin() {
+        AlertDialog.Builder(this)
+                .setTitle("是否退出登录")
+                .setNegativeButton("取消", object : DialogInterface.OnClickListener {
+                    override fun onClick(dialog: DialogInterface?, which: Int) {
+                    }
+                })
+                .setPositiveButton("确定", object : DialogInterface.OnClickListener {
+                    override fun onClick(dialog: DialogInterface?, which: Int) {
+                        val editor = sp!!.edit()
+                        editor.putBoolean("islogin", false)
+                        if (!sp!!.getBoolean("rememberpsw", false)) {
+                            editor.putString("username", "")
+                            editor.putString("password", "")
+                        }
+                        editor.putString("token", "")
+                        editor.putString("uid", "")
+                        editor.commit()
+                        UserData_Java.islogin = false
+                        startActivity(Intent(this@MainActivity, LoginActivity::class.java))
+                        finish()
+                    }
+                }).show()
     }
 
     override fun initPersenter() {
@@ -96,7 +125,7 @@ class MainActivity : LBaseAppCompatActivity<MainPersenter>(), IMainView {
         for (i in 0 until titlestringlist.size) {
             var fragment = Main_fragment()
             var bundle = Bundle()
-            bundle.putString("ordertype", titlestringlist[i])
+            bundle.putString("ordertype", (i + 1).toString())
             fragment.arguments = bundle
             fragmentlist.add(fragment)
         }

@@ -8,18 +8,20 @@ import android.os.Handler
 import android.os.Message
 import android.util.Log
 import android.view.View
-import com.android.luomeiji_driver.UI.password.SetPswActivity
 import com.android.luomeiji_rider.R
 import com.android.luomeiji_rider.base.LBaseAppCompatActivity
+import com.android.luomeiji_rider.tools.LActivityTool
+import com.android.luomeiji_rider.tools.RUtils
+import com.android.luomeiji_rider.ui.password.SetPswActivity
 import com.vondear.rxtool.RxActivityTool
 import com.vondear.rxtool.view.RxToast
 import kotlinx.android.synthetic.main.activity_sigeup.*
 
 class SignupActivity : LBaseAppCompatActivity<SignUpPersenter>(), ISignUpView,
-    View.OnClickListener {
+        View.OnClickListener {
     var code_m = ""
     override fun getcodesuccess(code: String) {
-        code_m = code
+        code_m = RUtils.strinjson(code, "data")
     }
 
     override fun getcodeerror(error: String) {
@@ -31,17 +33,18 @@ class SignupActivity : LBaseAppCompatActivity<SignUpPersenter>(), ISignUpView,
             R.id.sigeup_code -> {
                 sigeup_code.isEnabled = false
                 starttime(60)
-//                mPersenter!!.getcode(sigeup_phonenumber_et.text.toString())
+                mPersenter!!.getcode(sigeup_phonenumber_et.text.toString())
             }
             R.id.sigeup_sigeup_bt -> {
                 if (login_code_et.text.toString() == "") {
                     RxToast.normal("请输入验证码")
                     return
                 }
-                if (login_code_et.text.toString() != code_m) {
-                    RxToast.normal("验证码错误")
-                    return
-                }
+//                Log.e("验证码", login_code_et.text.toString() + "   " + code_m)
+//                if (login_code_et.text.toString() != code_m) {
+//                    RxToast.normal("验证码错误")
+//                    return
+//                }
                 var intent = Intent(this, SetPswActivity::class.java)
                 intent.putExtra("phonenumber", sigeup_phonenumber_et.text.toString())
                 intent.putExtra("phonecode", login_code_et.text.toString())
@@ -99,6 +102,7 @@ class SignupActivity : LBaseAppCompatActivity<SignUpPersenter>(), ISignUpView,
 
     var type = ""
     override fun initView() {
+        LActivityTool.addActivity(this)
         type = intent.getStringExtra("type")
         when (type) {
             "1" -> {

@@ -6,4 +6,7 @@
 
 
     <color name="view_1dp_h">#D3D3D3</color>
+    <color name="dontbindbank_text">#fc3d3d</color>
+
+    <color name="appcolor">#f0f0f0</color>
 </resources>

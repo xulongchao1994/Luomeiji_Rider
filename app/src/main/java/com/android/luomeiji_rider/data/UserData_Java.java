@@ -9,4 +9,6 @@ public class UserData_Java {
     public static boolean islogin = false;//是否登录
     public static String corpname = "";//所属兵团名称
     public static String corpid = "";//所属兵团id
+    public static boolean isbingbank = false;//是否绑定银行卡
+    public static String islegalize = "";//认证状态
 }

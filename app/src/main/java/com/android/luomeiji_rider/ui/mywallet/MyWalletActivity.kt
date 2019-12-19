@@ -1,13 +1,18 @@
 package com.android.luomeiji_rider.ui.mywallet
 
+import android.content.Intent
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.luomeiji_rider.R
 import com.android.luomeiji_rider.base.LBaseAppCompatActivity
 import com.android.luomeiji_rider.base.LBaseViewHolder
 import com.android.luomeiji_rider.bean.MyWalletBean
+import com.android.luomeiji_rider.data.UserData_Java
+import com.android.luomeiji_rider.tools.LActivityTool
+import com.android.luomeiji_rider.ui.bindbank.DontBindBankActivity
+import com.android.luomeiji_rider.ui.getmoeny.GetMoenyActivity
+import com.android.luomeiji_rider.ui.withdraw.WithdrawActivity
 import com.chad.library.adapter.base.BaseQuickAdapter
-import com.chad.library.adapter.base.BaseViewHolder
 import kotlinx.android.synthetic.main.activity_mywallet.*
 
 class MyWalletActivity : LBaseAppCompatActivity<MyWalletPersenter>(), IMyWalletView {
@@ -17,6 +22,7 @@ class MyWalletActivity : LBaseAppCompatActivity<MyWalletPersenter>(), IMyWalletV
 
     var datalist = arrayListOf<MyWalletBean>()
     override fun initView() {
+        LActivityTool.addActivity(this)
         datalist.add(MyWalletBean(R.drawable.mywallet_item_icon1, "收支明细"))
         datalist.add(MyWalletBean(R.drawable.mywallet_item_icon2, "立即提现"))
         mywallet_back.setOnClickListener { finish() }
@@ -31,6 +37,20 @@ class MyWalletActivity : LBaseAppCompatActivity<MyWalletPersenter>(), IMyWalletV
         }
         mywallet_rv.adapter = adapter
         adapter.setNewData(datalist)
+        adapter.setOnItemClickListener { adapter, view, position ->
+            when (datalist[position].name) {
+                "收支明细" -> {
+                    startActivity(Intent(this, GetMoenyActivity::class.java))
+                }
+                "立即提现" -> {
+                    if (!UserData_Java.isbingbank) {
+                        startActivity(Intent(this, DontBindBankActivity::class.java))
+                    } else {
+                        startActivity(Intent(this, WithdrawActivity::class.java))
+                    }
+                }
+            }
+        }
     }
 
     override fun initPersenter() {
